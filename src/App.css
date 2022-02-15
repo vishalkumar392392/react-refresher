@@ -1,0 +1,10 @@
+.App {
+ width: 82%;
+ float: right;
+}
+
+.Sidebar {
+  height: 100%;
+  background-color: rgb(29, 26, 24);
+}
+

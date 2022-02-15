@@ -1,0 +1,41 @@
+.header {
+    background-color:  #006a4d;
+    background-image: radial-gradient(
+        ellipse farthest-corner at 0 140%,
+        rgb(59, 105, 93) 0%,
+        rgb(68, 108, 99) 70%,
+        rgb(59, 105, 93) 70%
+      );
+    height: 6rem;
+    display: flex;
+}
+
+.header-ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-evenly;
+    
+}
+
+.header-ul li {
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    color: rgb(185, 131, 31);
+}
+
+
+a{
+    text-decoration: none;
+}
+
+.navlink{
+    color: rgb(185, 131, 31);
+    font-size: 1.75rem;
+    text-decoration: none;
+}
+
+.navlink:hover {
+    border-bottom: rgb(185, 131, 31);
+
+}
