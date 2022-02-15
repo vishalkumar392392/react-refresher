@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import axios from '../../../axios';
-import * as actionTypes from '../../../store/actions/index';
+import {setStudentAction} from '../../../store/actions/student/studentAction'
 
 
 function AddStudent(props) {
@@ -11,6 +11,9 @@ function AddStudent(props) {
     const [passport, setPassport] = useState("");
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
+
   const onSubmit = (event) => {
     event.preventDefault();
     if(name == null || name.length===0 || passport ===null || passport.length ===0){
@@ -18,7 +21,8 @@ function AddStudent(props) {
         return;
     }
     axios.post("/students",{name:name,passport:{id:"",number:passport}}).then(res=>{
-        props.setStudents();
+        // props.setStudents();
+        dispatch(setStudentAction());
     }).catch(err => {
         console.log(err);
     })
@@ -59,10 +63,5 @@ function AddStudent(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setStudents: () => dispatch(actionTypes.setStudentAction())
-    }
-}
 
-export default connect(null,mapDispatchToProps)(AddStudent);
+export default (AddStudent);

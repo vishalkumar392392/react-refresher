@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import axios from "../../axios";
 function Course (props) {
 
     const [courses, setCourses] = useState([]);
     const params = useParams();
+
+    const course = useSelector(state => state.course.courses);
 
     useEffect(()=>{
         if(params.id){
@@ -55,15 +57,11 @@ function Course (props) {
     
     return (
         <div className="component-style">
-            {res(params.id?courses:props.courses)}
+            {res(params.id?courses:course)}
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        courses: state.courseReducer.courses
-    }
-}
 
-export default connect(mapStateToProps,null)(Course);
+
+export default (Course);

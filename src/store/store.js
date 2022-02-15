@@ -1,16 +1,10 @@
-import courseReducer from "./reducers/courseReducer";
-import studentReducer from "./reducers/studentReducer";
-import thunk from 'redux-thunk'
-import {applyMiddleware, combineReducers, compose, createStore} from "redux"
+import { configureStore } from "@reduxjs/toolkit";
+import courseRe from './reducers/course-slice'
+import studentRed from './reducers/student-slice'
 
-const combineReducer = combineReducers({
-    studentReducer:studentReducer,
-    courseReducer:courseReducer
+
+const store = configureStore({
+    reducer:{student:studentRed, course:courseRe}
 })
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-
-const store = createStore(combineReducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

@@ -3,7 +3,6 @@ import './App.css';
 import Header from './componenets/Header/header';
 import Sidebar from './componenets/Sidebar/sidebar';
 import Course from './containers/Course/course';
-import StudentEnrolledCourses from './containers/Course/studentEnrolledCourses';
 import AddStudent from './containers/Student/AddStudent/AddStudent';
 import Student from './containers/Student/student';
 

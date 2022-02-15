@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AgGridColumn, AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -16,6 +15,7 @@ function StudentEnrolledCourses(props) {
     axios
       .get(`/students/${params.id}/courses`)
       .then((res) => {
+        console.log(res.data);
         setCourses(res.data);
       })
       .catch((err) => {

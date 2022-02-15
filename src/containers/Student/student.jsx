@@ -1,28 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import React from "react";
 import "./student.css";
 import { Link } from "react-router-dom";
-import * as actionTypes from '../../store/actions/index';
-import { connect } from "react-redux";
+
+import { useDispatch } from "react-redux";
+
+import { useSelector } from "react-redux";
+import {setStudentAction} from '../../store/actions/student/studentAction'
+import {setCourses} from '../../store/actions/course/courseAction'
+
 
 function Student(props) {
-  const [students, setStudents] = useState([
-    { id: 1, name: "vishal", gender: "male", courses: "" },
-  ]);
+
+  const dispatch = useDispatch();
+
+  const students = useSelector(state => state.student.students)
 
   useEffect(() => {
     console.log("Student componenet");
     if(props.users == null || props.users.length === 0){
-        props.setStudents();
+        // props.setStudents();
+        dispatch(setStudentAction());
     }
-    props.setCourses();
+    // props.setCourses();
+    dispatch(setCourses())
   }, []);
 
   const headers = (
     <thead>
       <tr>
         {
-          props.students[0] && Object.keys(props.students[0]).map((property) => {
+          students[0] && Object.keys(students[0]).map((property) => {
             return <th key={property}>{property.toUpperCase()}</th>;
           })
         }
@@ -33,7 +41,7 @@ function Student(props) {
 
   const rows = (
     <tbody>
-      {props.students.map((stu) => {
+      {students.map((stu) => {
         return (
           <tr key={stu.id}>
             <td>{stu.id}</td>
@@ -60,17 +68,5 @@ function Student(props) {
   );
 }
 
-const mapStateToProps = (state) =>{
-    return {
-        students : state.studentReducer.students
-    }
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setStudents: () => dispatch(actionTypes.setStudentAction()),
-        setCourses: () => dispatch(actionTypes.setCourses())
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Student);
+export default (Student);
